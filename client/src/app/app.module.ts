@@ -19,6 +19,11 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { provideToastr } from 'ngx-toastr';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { errorInterceptor} from './_interceptors/error.interceptor';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,10 @@ import { provideToastr } from 'ngx-toastr';
     MemberListComponent,
     MemberDetailComponent,
     ListsComponent,
-    MessagesComponent    
+    MessagesComponent,
+    TestErrorsComponent,
+    NotFoundComponent,
+    ServerErrorComponent    
   ],
   imports: [
     BrowserModule,
@@ -45,6 +53,8 @@ import { provideToastr } from 'ngx-toastr';
   ],
   providers: [
     provideAnimations(),
+    provideHttpClient(withInterceptors([errorInterceptor])),
+
     provideToastr({
       positionClass: 'toast-bottom-right'
     }),
