@@ -1,1 +1,8 @@
-<p>member-list works!</p>
+<div class="row">
+    <div  class="col-2">
+        <div *ngFor="let member of members; trackBy: trackByFn">
+            <p >{{member.knownAs}}</p>
+        </div>
+        
+    </div>
+</div>
